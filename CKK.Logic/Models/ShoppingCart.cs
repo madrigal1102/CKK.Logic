@@ -52,9 +52,12 @@ namespace CKK.Logic.Models
 
         public ShoppingCartItem AddProduct(Product prod, int quantity)
         {
-            quantity = Math.Max(quantity, 1);
+            if (quantity < 1)
+            {
+                return null;
+            }
 
-            if (_product1 != null && _product1.GetProduct().GetId() == prod.GetId())
+            else if (_product1 != null && _product1.GetProduct().GetId() == prod.GetId())
             {
                 _product1.SetQuantity(_product1.GetQuantity() + quantity);
                 return _product1;
@@ -100,8 +103,11 @@ namespace CKK.Logic.Models
 
         public ShoppingCartItem RemoveProduct(Product prod, int quantity) 
         {
-            quantity = Math.Max(quantity, 1);
-            if (_product1 != null && _product1.GetProduct().GetId() == prod.GetId())
+            if (quantity < 1)
+            {
+                return null;
+            }
+            else if (_product1 != null && _product1.GetProduct().GetId() == prod.GetId())
             {
                 
                 _product1.SetQuantity(_product1.GetQuantity() - quantity);
@@ -147,19 +153,11 @@ namespace CKK.Logic.Models
 
         public decimal GetTotal()
         {
-            decimal total = 0;
-            if (_product1 != null)
-            {
-                total += _product1.GetTotal();
-            }
-            if (_product2 != null)
-            {
-                total += _product2.GetTotal();
-            }
-            if (_product3 != null)
-            {
-                total *= _product3.GetTotal();
-            }
+            decimal t1 = _product1.GetProduct().GetPrice() * _product1.GetQuantity();
+            decimal t2 = _product2.GetProduct().GetPrice() * _product2.GetQuantity();
+            decimal t3 = _product3.GetProduct().GetPrice() * _product3.GetQuantity();
+            decimal total = t1 + t2 + t3;
+
             return total;
         }
 
