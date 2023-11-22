@@ -12,9 +12,13 @@ namespace CKK.Logic.Models
     {
         private int _id;
         private string _name;
-        private Product _product1;
-        private Product _product2;
-        private Product _product3;
+        private List<StoreItem> _items = new List<StoreItem>();
+
+
+        public Store()
+        {
+            _items = new List<StoreItem>();
+        }
 
         // GetId and SetId for _id field
         public int GetId()
@@ -36,115 +40,70 @@ namespace CKK.Logic.Models
         }
 
         // Method AddStoreItem(Product prod)
-        public void AddStoreItem(Product prod)
+        public StoreItem AddStoreItem(Product prod, int quantity)
         {
-            if (_product1 == null)
+            var itemToAdd = FindStoreItemById(prod.GetId());
+
+            if (quantity < 0)
             {
-                _product1 = prod;
+                return null;
             }
-            else if (_product2 == null)
+
+            if (itemToAdd == null)
             {
-                _product2 = prod;
-            }
-            else if (_product3 == null)
-            {
-                _product3 = prod;
+                StoreItem newItemAdd = new StoreItem(prod, quantity);
+                _items.Add(newItemAdd);
+
+                return newItemAdd;
             }
             else
             {
-                Console.WriteLine("There was no available product");
+                itemToAdd.SetQuantity(itemToAdd.GetQuantity() + quantity);
+                return itemToAdd;
             }
-
         }
 
-        //Method RemoveStoreItem(int procuctNumber)
-        public void RemoveStoreItem(int productNumber)
+        //Method RemoveStoreItem
+        public StoreItem RemoveStoreItem(int id, int quantity)
         {
-            if (productNumber == 1)
+            var itemToRemove = FindStoreItemById(id);
+
+            if (itemToRemove.GetQuantity() <= 0)
             {
-                _product1 = null;
+                itemToRemove.SetQuantity(0);
+                return itemToRemove;
             }
-            else if (productNumber == 2)
+            else if (itemToRemove.GetQuantity() > 0 && itemToRemove.GetQuantity() >= quantity)
             {
-                _product2 = null;
+                itemToRemove.SetQuantity(itemToRemove.GetQuantity() - quantity);
+                return itemToRemove;
             }
-            else if (productNumber == 3)
+            else if (itemToRemove.GetQuantity() > 0 && itemToRemove.GetQuantity() <= quantity)
             {
-                _product3 = null;
-            }
-            else if (productNumber < 1 && productNumber > 3)
-            {
-                Console.WriteLine("product out of range");
+                itemToRemove.SetQuantity(0);
+                return itemToRemove;
             }
             else
             {
-                Console.WriteLine("there is no product");
+                return null;
             }
         }
 
         // Method GetStoreItem(int productNumber)
-        public Product GetStoreItem(int productNumber)
+        public List<StoreItem> GetStoreItem()
         {
-            if (productNumber == 1)
-            {
-                if (_product1 == null)
-                {
-                    return null;
-                }
-                else
-                {
-                    return _product1;
-                }
-            }
-            else if (productNumber == 2)
-            {
-                if (_product2 == null)
-                {
-                    return null;
-                }
-                else
-                {
-                    return _product2;
-                }
-            }
-            else if (productNumber == 3)
-            {
-                if (_product3 == null)
-                {
-                    return null;
-                }
-                else
-                {
-                    return _product3;
-                }
-                
-            }
-            else
-            {
-                Console.WriteLine("Invalid productNumber");
-                return null;
-            }
+            return _items;
         }
 
         // method FindStoreItemById(int id)
-        public Product FindStoreItemById(int id)
+        public StoreItem FindStoreItemById(int id)
         {
-            if (_product1.GetId() == id)
-            {
-                return _product1;
-            }
-            else if (_product2.GetId() == id)
-            {
-                return _product2;
-            }
-            else if (_product3.GetId() == id)
-            {
-                return _product3;
-            }
-            else
-            {
-                return null;
-            }
+            var itemById =
+                from e in _items
+                where (e.GetProduct().GetId() == id)
+                select e;
+
+            return itemById.FirstOrDefault();
         }
     }
     
