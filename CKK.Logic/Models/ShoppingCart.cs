@@ -67,9 +67,9 @@ namespace CKK.Logic.Models
         }
 
 
-        public ShoppingCartItem RemoveProduct(Product prod, int quantity) 
+        public ShoppingCartItem RemoveProduct(int id, int quantity) 
         {
-            var itemToRemove = GetProductById(prod.GetId());
+            var itemToRemove = GetProductById(id);
 
             if (quantity < 1)
             {
@@ -110,6 +110,11 @@ namespace CKK.Logic.Models
                 total = total + element.GetTotal();
             }
             return total;
+        }
+
+        public List<ShoppingCartItem> GetProducts()
+        {
+            return _products;
         }
 
     }

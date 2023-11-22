@@ -90,7 +90,7 @@ namespace CKK.Logic.Models
         }
 
         // Method GetStoreItem(int productNumber)
-        public List<StoreItem> GetStoreItem()
+        public List<StoreItem> GetStoreItems()
         {
             return _items;
         }
