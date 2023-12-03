@@ -9,26 +9,23 @@ namespace CKK.Logic.Models
 {
     public class ShoppingCart
     {
-        private Customer _customer;
+        public Customer Customer { get; set; }
+        public Product Products { get; set; }
         private List<ShoppingCartItem> _products = new List<ShoppingCartItem>();
         
 
         public ShoppingCart(Customer cust)
         {
-            _customer = cust;
+            Customer = cust;
             _products = new List<ShoppingCartItem>();
         }
 
-        public int GetCustomerId()
-        {
-            return _customer.GetId();
-        }
 
         public ShoppingCartItem GetProductById(int id)
         {
             var prodById =
                 from e in _products
-                where e.GetProduct().GetId() == id
+                where e.Product.Id == id
                 select e;
 
             return prodById.FirstOrDefault();
@@ -42,13 +39,13 @@ namespace CKK.Logic.Models
 
         public ShoppingCartItem AddProduct(Product prod, int quantity)
         {
-            var itemToAdd = GetProductById(prod.GetId());
+            var itemToAdd = GetProductById(prod.Id);
 
             if (quantity > 0) 
             {
                 if (itemToAdd != null)
                 {
-                    itemToAdd.SetQuantity(itemToAdd.GetQuantity() + quantity);
+                    itemToAdd.Quantity = itemToAdd.Quantity + quantity;
                     return itemToAdd;
                 }
                 else
@@ -78,11 +75,11 @@ namespace CKK.Logic.Models
 
             if (itemToRemove != null)
             {
-                itemToRemove.SetQuantity(itemToRemove.GetQuantity() - quantity);
-                if (itemToRemove.GetQuantity() < 1)
+                itemToRemove.Quantity =itemToRemove.Quantity - quantity;
+                if (itemToRemove.Quantity < 1)
                 {
                     _products.Remove(itemToRemove);
-                    itemToRemove.SetQuantity(0);
+                    itemToRemove.Quantity = 0;
                     return itemToRemove;    
                 }
                 else
@@ -101,7 +98,7 @@ namespace CKK.Logic.Models
         {
             var getTotal =
                 from e in _products
-                where e.GetQuantity() != 0
+                where e.Quantity != 0
                 select e;
 
             decimal total = 0;

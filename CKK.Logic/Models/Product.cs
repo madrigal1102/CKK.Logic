@@ -3,43 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CKK.Logic.Interfaces;
 
 namespace CKK.Logic.Models
 {
-    public class Product
+    public class Product : Entity
     {
-        private int _id;
-        private string _name;
-        private decimal _price;
+ 
+        public decimal Price { get; set; }
 
-        // GetId and SetId for _id field
-        public int GetId()
+        public Product(int id, string name, decimal price) : base(id, name)
         {
-            return _id;
-        }
-        public void SetId(int id)
-        {
-            _id = id;
+            Price = price; 
         }
 
-        // GetName and SetName for _name field
-        public string GetName()
-        {
-            return _name;
-        }
-        public void SetName(string name)
-        {
-            _name = name;
-        }
-
-        // GetPrice and SetPrice for _price field
-        public decimal GetPrice()
-        {
-            return _price;
-        }
-        public void SetPrice(decimal price)
-        {
-            _price = price;
-        }
     }
 }

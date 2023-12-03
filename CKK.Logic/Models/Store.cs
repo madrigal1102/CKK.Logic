@@ -5,44 +5,26 @@ using System.Reflection.Metadata.Ecma335;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using CKK.Logic.Interfaces;
 
 namespace CKK.Logic.Models
 {
-    public class Store
+    public class Store : Entity
     {
-        private int _id;
-        private string _name;
         private List<StoreItem> _items = new List<StoreItem>();
 
 
-        public Store()
+        public Store(int id, string name) : base (id, name)
         {
+            Id = id;
+            Name = name;
             _items = new List<StoreItem>();
-        }
-
-        // GetId and SetId for _id field
-        public int GetId()
-        {
-            return _id;
-        }
-        public void SetId(int id)
-        {
-            _id = id;
-        }
-        // GetName and SetName for _name field
-        public string GetName()
-        {
-            return _name;
-        }
-        public void SetName(string name)
-        {
-            _name = name;
         }
 
         // Method AddStoreItem(Product prod)
         public StoreItem AddStoreItem(Product prod, int quantity)
         {
-            var itemToAdd = FindStoreItemById(prod.GetId());
+            var itemToAdd = FindStoreItemById(prod.Id);
 
             if (quantity < 0)
             {
@@ -58,7 +40,7 @@ namespace CKK.Logic.Models
             }
             else
             {
-                itemToAdd.SetQuantity(itemToAdd.GetQuantity() + quantity);
+                itemToAdd.Quantity = itemToAdd.Quantity + quantity;
                 return itemToAdd;
             }
         }
@@ -68,19 +50,19 @@ namespace CKK.Logic.Models
         {
             var itemToRemove = FindStoreItemById(id);
 
-            if (itemToRemove.GetQuantity() <= 0)
+            if (itemToRemove.Quantity <= 0)
             {
-                itemToRemove.SetQuantity(0);
+                itemToRemove.Quantity = 0;
                 return itemToRemove;
             }
-            else if (itemToRemove.GetQuantity() > 0 && itemToRemove.GetQuantity() >= quantity)
+            else if (itemToRemove.Quantity > 0 && itemToRemove.Quantity >= quantity)
             {
-                itemToRemove.SetQuantity(itemToRemove.GetQuantity() - quantity);
+                itemToRemove.Quantity = itemToRemove.Quantity - quantity;
                 return itemToRemove;
             }
-            else if (itemToRemove.GetQuantity() > 0 && itemToRemove.GetQuantity() <= quantity)
+            else if (itemToRemove.Quantity > 0 && itemToRemove.Quantity <= quantity)
             {
-                itemToRemove.SetQuantity(0);
+                itemToRemove.Quantity = 0;
                 return itemToRemove;
             }
             else
@@ -100,7 +82,7 @@ namespace CKK.Logic.Models
         {
             var itemById =
                 from e in _items
-                where (e.GetProduct().GetId() == id)
+                where (e.Product.Id == id)
                 select e;
 
             return itemById.FirstOrDefault();
