@@ -11,7 +11,7 @@ namespace CKK.Logic.Models
     {
 
         // SoppingCartItem cunstroctor for shopping cart items
-        public ShoppingCartItem(Product product, int quantity) : base (product, quantity)
+        public ShoppingCartItem(Product product, int quantity)
         {
            Product = product;
            Quantity = quantity;
