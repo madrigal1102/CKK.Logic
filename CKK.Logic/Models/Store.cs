@@ -6,10 +6,12 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using CKK.Logic.Interfaces;
+using CKK.Logic.Exceptions;
+using System.ComponentModel.DataAnnotations;
 
 namespace CKK.Logic.Models
 {
-    public class Store : Entity
+    public class Store : Entity, IStore 
     {
         private List<StoreItem> _items = new List<StoreItem>();
 
@@ -26,7 +28,7 @@ namespace CKK.Logic.Models
 
             if (quantity < 0)
             {
-                return null;
+                throw new InventoryItemStockTooLowException("Quantity cannot be less than zero.");
             }
 
             if (itemToAdd == null)
@@ -46,6 +48,10 @@ namespace CKK.Logic.Models
         //Method RemoveStoreItem
         public StoreItem RemoveStoreItem(int id, int quantity)
         {
+            if (quantity < 0)
+            {
+                throw new ArgumentOutOfRangeException();
+            }
             var itemToRemove = FindStoreItemById(id);
 
             if (itemToRemove.Quantity <= 0)
@@ -65,7 +71,7 @@ namespace CKK.Logic.Models
             }
             else
             {
-                return null;
+                throw new ProductDoesNotExistException();
             }
         }
 
@@ -78,6 +84,10 @@ namespace CKK.Logic.Models
         // method FindStoreItemById(int id)
         public StoreItem FindStoreItemById(int id)
         {
+            if (id < 0)
+            {
+                throw new InvalidIdException("Invalid Id, cannot be less than zero. ");
+            }
             var itemById =
                 from e in _items
                 where (e.Product.Id == id)

@@ -4,10 +4,12 @@ using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
+using CKK.Logic.Interfaces;
+using CKK.Logic.Exceptions;
 
 namespace CKK.Logic.Models
 {
-    public class ShoppingCart
+    public class ShoppingCart : IShoppingCart
     {
         public Customer Customer { get; set; }
         public Product Products { get; set; }
@@ -23,6 +25,11 @@ namespace CKK.Logic.Models
 
         public ShoppingCartItem GetProductById(int id)
         {
+            if (id < 0)
+            {
+                throw new InvalidIdException("Invalid Id, cannot be less than 0");
+            }
+
             var prodById =
                 from e in _products
                 where e.Product.Id == id
@@ -57,7 +64,7 @@ namespace CKK.Logic.Models
             }
             else
             {
-                return null;
+                throw new InventoryItemStockTooLowException("Invalid quantity, can not be less than 0");
             }
 
 
@@ -68,14 +75,14 @@ namespace CKK.Logic.Models
         {
             var itemToRemove = GetProductById(id);
 
-            if (quantity < 1)
+            if (quantity <= 0)
             {
-                return null;
+               throw new ArgumentOutOfRangeException("Quantity can not be less than zero");
             }
 
             if (itemToRemove != null)
             {
-                itemToRemove.Quantity =itemToRemove.Quantity - quantity;
+                itemToRemove.Quantity = itemToRemove.Quantity - quantity;
                 if (itemToRemove.Quantity < 1)
                 {
                     _products.Remove(itemToRemove);
@@ -89,7 +96,7 @@ namespace CKK.Logic.Models
             }
             else
             {
-                return null;
+                throw new ProductDoesNotExistException("Item does not exist in store. ");
             }
 
         }
@@ -108,7 +115,11 @@ namespace CKK.Logic.Models
             }
             return total;
         }
-
+        public int GetCustomerId()
+        {
+            // Returns the customer's id 
+            return Customer.Id;
+        }
         public List<ShoppingCartItem> GetProducts()
         {
             return _products;
