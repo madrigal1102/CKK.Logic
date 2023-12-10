@@ -73,12 +73,11 @@ namespace CKK.Logic.Models
 
         public ShoppingCartItem RemoveProduct(int id, int quantity) 
         {
-            var itemToRemove = GetProductById(id);
-
             if (quantity <= 0)
             {
-               throw new ArgumentOutOfRangeException("Quantity can not be less than zero");
+                throw new ArgumentOutOfRangeException("Quantity can not be less than zero");
             }
+            var itemToRemove = GetProductById(id);
 
             if (itemToRemove != null)
             {
