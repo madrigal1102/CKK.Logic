@@ -29,13 +29,16 @@ namespace CKK.Logic.Models
             {
                 throw new InvalidIdException("Invalid Id, cannot be less than 0");
             }
-
-            var prodById =
+            else
+            {
+                var prodById =
                 from e in _products
                 where e.Product.Id == id
                 select e;
 
-            return prodById.FirstOrDefault();
+                return prodById.FirstOrDefault();
+            }
+            
 
         }
 
@@ -78,27 +81,27 @@ namespace CKK.Logic.Models
                 throw new ArgumentOutOfRangeException("Quantity can not be less than zero");
             }
             var itemToRemove = GetProductById(id);
-
-            if (itemToRemove != null)
-            {
-                itemToRemove.Quantity = itemToRemove.Quantity - quantity;
-                if (itemToRemove.Quantity < 1)
-                {
-                    _products.Remove(itemToRemove);
-                    itemToRemove.Quantity = 0;
-                    return itemToRemove;    
-                }
-                else
-                {
-                    return itemToRemove;
-                }
-            }
-            else
+            if (itemToRemove == null)
             {
                 throw new ProductDoesNotExistException("Item does not exist in store. ");
             }
 
+
+            if (itemToRemove.Quantity - quantity <= 0)
+            {
+                itemToRemove.Quantity = (0);
+                _products.Remove(itemToRemove);
+
+            }
+            else
+            {
+                itemToRemove.Quantity -= quantity;
+
+            }
+            return itemToRemove;
+
         }
+
 
         public decimal GetTotal()
         {

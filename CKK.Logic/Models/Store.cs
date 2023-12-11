@@ -52,22 +52,19 @@ namespace CKK.Logic.Models
             {
                 throw new ArgumentOutOfRangeException();
             }
-            var itemToRemove = FindStoreItemById(id);
+            var existingItem = FindStoreItemById(id);
 
-            if (itemToRemove.Quantity <= 0)
+            if (existingItem != null)
             {
-                itemToRemove.Quantity = 0;
-                return itemToRemove;
-            }
-            else if (itemToRemove.Quantity > 0 && itemToRemove.Quantity >= quantity)
-            {
-                itemToRemove.Quantity = itemToRemove.Quantity - quantity;
-                return itemToRemove;
-            }
-            else if (itemToRemove.Quantity > 0 && itemToRemove.Quantity <= quantity)
-            {
-                itemToRemove.Quantity = 0;
-                return itemToRemove;
+                if (existingItem.Quantity - quantity < 0)
+                {
+                    existingItem.Quantity = (0);
+                }
+                else
+                {
+                    existingItem.Quantity = (existingItem.Quantity - quantity);
+                }
+                return existingItem;
             }
             else
             {

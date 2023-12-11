@@ -17,13 +17,13 @@ namespace CKK.Logic.Interfaces
         {
             get
             {
-                return Id;
+                return id;
             }
             set
             {
                 if (value >= 0)
                 {
-                    Id = value;
+                    id = value;
                 }
                 else
                 {
