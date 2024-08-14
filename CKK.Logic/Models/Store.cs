@@ -72,6 +72,20 @@ namespace CKK.Logic.Models
             }
         }
 
+        public StoreItem DeleteStoreItem(int id)
+        {
+            var existingItem = FindStoreItemById(id);
+            if (_items.Contains(existingItem))
+            {
+                _items.Remove(existingItem);
+                return null;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         // Method GetStoreItem(int productNumber)
         public List<StoreItem> GetStoreItems()
         {

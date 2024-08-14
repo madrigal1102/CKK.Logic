@@ -28,137 +28,146 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.idLabel = new System.Windows.Forms.Label();
-            this.idTextBox = new System.Windows.Forms.TextBox();
-            this.productLabel = new System.Windows.Forms.Label();
-            this.productTextBox = new System.Windows.Forms.TextBox();
-            this.quantityLabel = new System.Windows.Forms.Label();
-            this.quantityTextBox = new System.Windows.Forms.TextBox();
-            this.addButton = new System.Windows.Forms.Button();
-            this.InventoryListBox = new System.Windows.Forms.ListBox();
-            this.allStoreItems = new System.Windows.Forms.ListBox();
-            this.removeItemButton = new System.Windows.Forms.Button();
-            this.viewAllButton = new System.Windows.Forms.Button();
-            this.SuspendLayout();
+            idLabel = new Label();
+            idTextBox = new TextBox();
+            productLabel = new Label();
+            productTextBox = new TextBox();
+            quantityLabel = new Label();
+            quantityTextBox = new TextBox();
+            addButton = new Button();
+            InventoryListBox = new ListBox();
+            allStoreItems = new ListBox();
+            removeItemButton = new Button();
+            viewAllButton = new Button();
+            SuspendLayout();
             // 
             // idLabel
             // 
-            this.idLabel.AutoSize = true;
-            this.idLabel.Location = new System.Drawing.Point(25, 75);
-            this.idLabel.Name = "idLabel";
-            this.idLabel.Size = new System.Drawing.Size(18, 15);
-            this.idLabel.TabIndex = 0;
-            this.idLabel.Text = "ID";
+            idLabel.AutoSize = true;
+            idLabel.Location = new Point(29, 100);
+            idLabel.Name = "idLabel";
+            idLabel.Size = new Size(24, 20);
+            idLabel.TabIndex = 0;
+            idLabel.Text = "ID";
             // 
             // idTextBox
             // 
-            this.idTextBox.Location = new System.Drawing.Point(25, 93);
-            this.idTextBox.Name = "idTextBox";
-            this.idTextBox.Size = new System.Drawing.Size(170, 23);
-            this.idTextBox.TabIndex = 1;
+            idTextBox.Location = new Point(29, 124);
+            idTextBox.Margin = new Padding(3, 4, 3, 4);
+            idTextBox.Name = "idTextBox";
+            idTextBox.Size = new Size(194, 27);
+            idTextBox.TabIndex = 1;
             // 
             // productLabel
             // 
-            this.productLabel.AutoSize = true;
-            this.productLabel.Location = new System.Drawing.Point(258, 75);
-            this.productLabel.Name = "productLabel";
-            this.productLabel.Size = new System.Drawing.Size(49, 15);
-            this.productLabel.TabIndex = 2;
-            this.productLabel.Text = "Product";
+            productLabel.AutoSize = true;
+            productLabel.Location = new Point(295, 100);
+            productLabel.Name = "productLabel";
+            productLabel.Size = new Size(60, 20);
+            productLabel.TabIndex = 2;
+            productLabel.Text = "Product";
             // 
             // productTextBox
             // 
-            this.productTextBox.Location = new System.Drawing.Point(258, 93);
-            this.productTextBox.Name = "productTextBox";
-            this.productTextBox.Size = new System.Drawing.Size(170, 23);
-            this.productTextBox.TabIndex = 3;
+            productTextBox.Location = new Point(295, 124);
+            productTextBox.Margin = new Padding(3, 4, 3, 4);
+            productTextBox.Name = "productTextBox";
+            productTextBox.Size = new Size(194, 27);
+            productTextBox.TabIndex = 3;
             // 
             // quantityLabel
             // 
-            this.quantityLabel.AutoSize = true;
-            this.quantityLabel.Location = new System.Drawing.Point(504, 75);
-            this.quantityLabel.Name = "quantityLabel";
-            this.quantityLabel.Size = new System.Drawing.Size(53, 15);
-            this.quantityLabel.TabIndex = 4;
-            this.quantityLabel.Text = "Quantity";
+            quantityLabel.AutoSize = true;
+            quantityLabel.Location = new Point(576, 100);
+            quantityLabel.Name = "quantityLabel";
+            quantityLabel.Size = new Size(65, 20);
+            quantityLabel.TabIndex = 4;
+            quantityLabel.Text = "Quantity";
             // 
             // quantityTextBox
             // 
-            this.quantityTextBox.Location = new System.Drawing.Point(504, 93);
-            this.quantityTextBox.Name = "quantityTextBox";
-            this.quantityTextBox.Size = new System.Drawing.Size(170, 23);
-            this.quantityTextBox.TabIndex = 5;
+            quantityTextBox.Location = new Point(576, 124);
+            quantityTextBox.Margin = new Padding(3, 4, 3, 4);
+            quantityTextBox.Name = "quantityTextBox";
+            quantityTextBox.Size = new Size(194, 27);
+            quantityTextBox.TabIndex = 5;
             // 
             // addButton
             // 
-            this.addButton.Location = new System.Drawing.Point(25, 142);
-            this.addButton.Name = "addButton";
-            this.addButton.Size = new System.Drawing.Size(170, 23);
-            this.addButton.TabIndex = 6;
-            this.addButton.Text = "Add";
-            this.addButton.UseVisualStyleBackColor = true;
-            this.addButton.Click += new System.EventHandler(this.addButton_Click);
+            addButton.Location = new Point(29, 189);
+            addButton.Margin = new Padding(3, 4, 3, 4);
+            addButton.Name = "addButton";
+            addButton.Size = new Size(194, 31);
+            addButton.TabIndex = 6;
+            addButton.Text = "Add";
+            addButton.UseVisualStyleBackColor = true;
+            addButton.Click += addButton_Click;
             // 
             // InventoryListBox
             // 
-            this.InventoryListBox.FormattingEnabled = true;
-            this.InventoryListBox.ItemHeight = 15;
-            this.InventoryListBox.Location = new System.Drawing.Point(25, 228);
-            this.InventoryListBox.Name = "InventoryListBox";
-            this.InventoryListBox.Size = new System.Drawing.Size(339, 199);
-            this.InventoryListBox.TabIndex = 7;
+            InventoryListBox.FormattingEnabled = true;
+            InventoryListBox.ItemHeight = 20;
+            InventoryListBox.Location = new Point(29, 304);
+            InventoryListBox.Margin = new Padding(3, 4, 3, 4);
+            InventoryListBox.Name = "InventoryListBox";
+            InventoryListBox.Size = new Size(387, 264);
+            InventoryListBox.TabIndex = 7;
             // 
             // allStoreItems
             // 
-            this.allStoreItems.FormattingEnabled = true;
-            this.allStoreItems.ItemHeight = 15;
-            this.allStoreItems.Location = new System.Drawing.Point(418, 229);
-            this.allStoreItems.Name = "allStoreItems";
-            this.allStoreItems.Size = new System.Drawing.Size(335, 199);
-            this.allStoreItems.TabIndex = 8;
+            allStoreItems.FormattingEnabled = true;
+            allStoreItems.ItemHeight = 20;
+            allStoreItems.Location = new Point(478, 305);
+            allStoreItems.Margin = new Padding(3, 4, 3, 4);
+            allStoreItems.Name = "allStoreItems";
+            allStoreItems.Size = new Size(382, 264);
+            allStoreItems.TabIndex = 8;
             // 
             // removeItemButton
             // 
-            this.removeItemButton.Location = new System.Drawing.Point(258, 142);
-            this.removeItemButton.Name = "removeItemButton";
-            this.removeItemButton.Size = new System.Drawing.Size(170, 23);
-            this.removeItemButton.TabIndex = 9;
-            this.removeItemButton.Text = "Remove Item";
-            this.removeItemButton.UseVisualStyleBackColor = true;
+            removeItemButton.Location = new Point(295, 189);
+            removeItemButton.Margin = new Padding(3, 4, 3, 4);
+            removeItemButton.Name = "removeItemButton";
+            removeItemButton.Size = new Size(194, 31);
+            removeItemButton.TabIndex = 9;
+            removeItemButton.Text = "Remove Item";
+            removeItemButton.UseVisualStyleBackColor = true;
+            removeItemButton.Click += removeItemButton_Click;
             // 
             // viewAllButton
             // 
-            this.viewAllButton.Location = new System.Drawing.Point(504, 142);
-            this.viewAllButton.Name = "viewAllButton";
-            this.viewAllButton.Size = new System.Drawing.Size(170, 23);
-            this.viewAllButton.TabIndex = 10;
-            this.viewAllButton.Text = "View All Items";
-            this.viewAllButton.UseVisualStyleBackColor = true;
-            this.viewAllButton.Click += new System.EventHandler(this.viewAllButton_Click);
+            viewAllButton.Location = new Point(576, 189);
+            viewAllButton.Margin = new Padding(3, 4, 3, 4);
+            viewAllButton.Name = "viewAllButton";
+            viewAllButton.Size = new Size(194, 31);
+            viewAllButton.TabIndex = 10;
+            viewAllButton.Text = "View All Items";
+            viewAllButton.UseVisualStyleBackColor = true;
+            viewAllButton.Click += viewAllButton_Click;
             // 
             // InventoryManagementForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.viewAllButton);
-            this.Controls.Add(this.removeItemButton);
-            this.Controls.Add(this.allStoreItems);
-            this.Controls.Add(this.InventoryListBox);
-            this.Controls.Add(this.addButton);
-            this.Controls.Add(this.quantityTextBox);
-            this.Controls.Add(this.quantityLabel);
-            this.Controls.Add(this.productTextBox);
-            this.Controls.Add(this.productLabel);
-            this.Controls.Add(this.idTextBox);
-            this.Controls.Add(this.idLabel);
-            this.Name = "InventoryManagementForm";
-            this.Text = "InventoryManagementForm";
-            this.Load += new System.EventHandler(this.InventoryManagementForm_Load);
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            BackColor = SystemColors.ControlDark;
+            ClientSize = new Size(914, 600);
+            Controls.Add(viewAllButton);
+            Controls.Add(removeItemButton);
+            Controls.Add(allStoreItems);
+            Controls.Add(InventoryListBox);
+            Controls.Add(addButton);
+            Controls.Add(quantityTextBox);
+            Controls.Add(quantityLabel);
+            Controls.Add(productTextBox);
+            Controls.Add(productLabel);
+            Controls.Add(idTextBox);
+            Controls.Add(idLabel);
+            Margin = new Padding(3, 4, 3, 4);
+            Name = "InventoryManagementForm";
+            Text = "InventoryManagementForm";
+            Load += InventoryManagementForm_Load;
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion

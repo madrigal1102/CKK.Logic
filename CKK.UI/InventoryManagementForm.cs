@@ -27,9 +27,25 @@ namespace CKK.UI
 
         }
 
+        private void removeItemButton_Click(object sender, EventArgs e)
+        {
+            if(allStoreItems.SelectedIndex != -1) 
+            {
+                Product product = (Product)allStoreItems.SelectedItem;
+                store.DeleteStoreItem(product.Id);
+                allStoreItems.Items.RemoveAt(allStoreItems.SelectedIndex);
+            
+            }
+        }
+
         private void viewAllButton_Click(object sender, EventArgs e)
         {
             List<StoreItem> allItems = store.GetStoreItems();
+
+            foreach (StoreItem item in allItems)
+            {
+                allStoreItems.Items.Add(item.Product.Id + " " + item.Product.Name + " " + item.Quantity);
+            }
 
         }
 
