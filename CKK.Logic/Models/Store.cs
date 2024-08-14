@@ -24,7 +24,16 @@ namespace CKK.Logic.Models
         // Method AddStoreItem(Product prod)
         public StoreItem AddStoreItem(Product prod, int quantity)
         {
+            // int newId = 100;
             var itemToAdd = FindStoreItemById(prod.Id);
+
+            /*
+             * if (itemToAdd.Product.Id == 0)
+            {
+                itemToAdd.Product.Id = newId;
+                newId++;
+            }
+            */
 
             if (quantity < 0)
             {
@@ -33,10 +42,10 @@ namespace CKK.Logic.Models
 
             if (itemToAdd == null)
             {
+                
                 StoreItem newItemAdd = new StoreItem(prod, quantity);
                 _items.Add(newItemAdd);
-
-                return newItemAdd;
+                return newItemAdd;    
             }
             else
             {

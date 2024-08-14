@@ -14,7 +14,23 @@ namespace CKK.UI
         }
 
 
-        private void addButton_Click(object sender, EventArgs e)
+        private void LoadItems()
+        {
+            allStoreItems.Items.Clear();
+            List<StoreItem> allItems = store.GetStoreItems();
+
+            foreach (StoreItem item in allItems)
+            {
+                allStoreItems.Items.Add(item.Product.Id + "-" + item.Product.Name + "=" + item.Quantity);
+            }
+        }
+
+        private void InventoryManagementForm_Load_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void addButton_Click_1(object sender, EventArgs e)
         {
             Product product = new Product();
             product.Id = Int32.Parse(idTextBox.Text);
@@ -23,40 +39,34 @@ namespace CKK.UI
 
             store.AddStoreItem(product, quantity);
 
-            InventoryListBox.Items.Add(product.Id + " " + product.Name + " " + quantity);
+            InventoryListBox.Items.Add(product.Id + "-" + product.Name + "=" + quantity);
 
+            idTextBox.Clear();
+            productTextBox.Clear();
+            quantityTextBox.Clear();
         }
 
-        private void removeItemButton_Click(object sender, EventArgs e)
+        private void removeItemButton_Click_1(object sender, EventArgs e)
         {
-            if(allStoreItems.SelectedIndex != -1) 
+            List<StoreItem> items = store.GetStoreItems();
+            if (allStoreItems.SelectedIndex != -1)
             {
-                Product product = (Product)allStoreItems.SelectedItem;
-                store.DeleteStoreItem(product.Id);
-                allStoreItems.Items.RemoveAt(allStoreItems.SelectedIndex);
-            
+                int itemToRemove = allStoreItems.SelectedIndex;
+                string selectText = allStoreItems.Items[itemToRemove].ToString();
+                int dashIndex = selectText.IndexOf("-");
+                int prodId = int.Parse(selectText.Substring(0, dashIndex));
+
+
+                store.DeleteStoreItem(prodId);
+
+                LoadItems();
             }
         }
 
-        private void viewAllButton_Click(object sender, EventArgs e)
+        private void viewAllButton_Click_1(object sender, EventArgs e)
         {
-            List<StoreItem> allItems = store.GetStoreItems();
-
-            foreach (StoreItem item in allItems)
-            {
-                allStoreItems.Items.Add(item.Product.Id + " " + item.Product.Name + " " + item.Quantity);
-            }
-
+            LoadItems();
         }
-
-
-
-        private void InventoryManagementForm_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        
     }
 }
 

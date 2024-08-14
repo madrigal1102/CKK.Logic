@@ -12,8 +12,14 @@ namespace CKK.UI
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
+            loginForm loginform = new loginForm();
+            Application.Run(loginform);
             Store store = new Store();
-            Application.Run(new InventoryManagementForm(store));
+            if(loginform.DialogResult == DialogResult.OK)
+            {
+                Application.Run(new InventoryManagementForm(store));
+            }
+            
             
         }
     }
