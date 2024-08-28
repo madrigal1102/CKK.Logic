@@ -9,6 +9,7 @@ using CKK.Logic.Exceptions;
 
 namespace CKK.Logic.Interfaces
 {
+    [Serializable]
     public abstract class Entity
     {
         private int id;

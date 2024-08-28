@@ -1,13 +1,14 @@
 ﻿
 using CKK.Logic.Interfaces;
 using CKK.Logic.Models;
+using CKK.Persistance.Models;
 
 namespace CKK.UI
 {
     public partial class InventoryManagementForm : Form
     {
-        Store store = new Store();
-        public InventoryManagementForm(Store _store)
+        FileStore store;
+        public InventoryManagementForm(FileStore _store)
         {
             store = _store;
             InitializeComponent();
@@ -66,6 +67,11 @@ namespace CKK.UI
         private void viewAllButton_Click_1(object sender, EventArgs e)
         {
             LoadItems();
+        }
+
+        private void saveButton_Click(object sender, EventArgs e)
+        {
+            store.Save();
         }
     }
 }

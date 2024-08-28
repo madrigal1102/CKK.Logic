@@ -1,4 +1,6 @@
 using CKK.Logic.Models;
+using CKK.Persistance.Interfaces;
+using CKK.Persistance.Models;
 namespace CKK.UI
 {
     internal static class Program
@@ -14,7 +16,7 @@ namespace CKK.UI
             ApplicationConfiguration.Initialize();
             loginForm loginform = new loginForm();
             Application.Run(loginform);
-            Store store = new Store();
+            FileStore store = new FileStore();
             if(loginform.DialogResult == DialogResult.OK)
             {
                 Application.Run(new InventoryManagementForm(store));
