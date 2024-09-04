@@ -139,58 +139,21 @@ namespace CKK.Logic.Models
             }
         }
 
-        public List<StoreItem> GetAllProductsByQuantity(int key)
+        public List<StoreItem> GetAllProductsByQuantity()
         {
-            List<StoreItem> templist = new List<StoreItem>();
-            foreach (var item in _items)
-            {
-                if (item.Quantity == key)
-                {
-                    templist.Add(item);
-                }
-            }
-            for (int i = 0; i < templist.Count - 1; i++)
-            {
-                for (int j = 0; j < templist.Count - 1; j++)
-                {
-                    int x = templist[j].Quantity;
-                    int y = templist[j + 1].Quantity;
-                    if (x < y)
-                    {
-                        StoreItem tempitem = templist[j];
-                        templist[j] = templist[j + 1];
-                        templist[j + 1] = tempitem;
-                    }
-                }
-            }
-            return templist;
+            _items = _items.OrderBy(x => x.Quantity).ToList();
+
+
+            return _items;
         }
 
-        public List<StoreItem> GetAllProductsByPrice(decimal key)
+        public List<StoreItem> GetAllProductsByPrice()
         {
-            List<StoreItem> templist = new List<StoreItem>();
-            foreach (var item in _items)
-            {
-                if (item.Product.Price == key)
-                {
-                    templist.Add(item);
-                }
-            }
-            for (int i = 0; i < templist.Count - 1; i++)
-            {
-                for (int j = 0; j < templist.Count - 1; j++)
-                {
-                    decimal x = templist[j].Product.Price;
-                    decimal y = templist[j + 1].Product.Price;
-                    if (x < y)
-                    {
-                        StoreItem tempitem = templist[j];
-                        templist[j] = templist[j + 1];
-                        templist[j + 1] = tempitem;
-                    }
-                }
-            }
-            return templist;
+            _items = _items.OrderBy(x => x.Product.Price).ToList();
+
+
+            return _items;
+          
         }
 
     }

@@ -73,6 +73,35 @@ namespace CKK.UI
         {
             store.Save();
         }
+
+        private void searchByName_Click(object sender, EventArgs e)
+        {
+
+            List<StoreItem> items = store.GetStoreItems();
+            List<StoreItem> search = store.GetAllProductsByName(searchBox.Text);
+
+            string searchName = search.FirstOrDefault().Product.Name;
+
+            foreach (StoreItem item in items)
+            {
+                if (searchName == item.Product.Name)
+                {
+                    allStoreItems.Items.Add(item.Product.Id + "-" + item.Product.Name + "=" + item.Quantity);
+                }
+            }
+        }
+
+        private void sortByQuantity_Click(object sender, EventArgs e)
+        {
+            List<StoreItem> allItems = store.GetAllProductsByQuantity();
+            LoadItems();
+        }
+
+        private void sortbyPrice_Click(object sender, EventArgs e)
+        {
+            List<StoreItem> allItems = store.GetAllProductsByPrice();
+            LoadItems();
+        }
     }
 }
 
