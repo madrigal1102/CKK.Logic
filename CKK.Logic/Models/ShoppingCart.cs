@@ -12,7 +12,12 @@ namespace CKK.Logic.Models
     public class ShoppingCart : IShoppingCart
     {
         public Customer Customer { get; set; }
+        public int ShoppingCartId { get; set; }
+        public int CustomerId { get; set; }
         public Product Products { get; set; }
+
+        public List<ShoppingCartItem> ShoppingCartItems { get; set; } = new List<ShoppingCartItem>();
+
         private List<ShoppingCartItem> _products = new List<ShoppingCartItem>();
         
 
