@@ -24,7 +24,7 @@ namespace CKK.UI
 
             foreach (Product item in allItems)
             {
-                allStoreItems.Items.Add(item.Id + "-" + item.Name + "=" + item.Price);
+                allStoreItems.Items.Add(item.Id + "-" + item.Price + "=" + item.Quantity + "-" + item.Name);
             }
         }
 
@@ -36,13 +36,13 @@ namespace CKK.UI
         private void addButton_Click_1(object sender, EventArgs e)
         {
             Product product = new Product();
-            product.Id = Int32.Parse(idTextBox.Text);
+            product.Price = Int32.Parse(idTextBox.Text);
             product.Name = productTextBox.Text;
-            int quantity = Int32.Parse(quantityTextBox.Text);
+            product.Quantity = Int32.Parse(quantityTextBox.Text);
 
             _unitOfWork.Products.Add(product);
 
-            InventoryListBox.Items.Add(product.Id + "-" + product.Name + "=" + quantity);
+            InventoryListBox.Items.Add(product.Price + "-" + product.Quantity + "=" + product.Name);
 
             idTextBox.Clear();
             productTextBox.Clear();
@@ -71,7 +71,7 @@ namespace CKK.UI
             LoadItems();
         }
 
-        
+
         private void searchByName_Click(object sender, EventArgs e)
         {
 
@@ -97,7 +97,7 @@ namespace CKK.UI
 
         private void sortbyPrice_Click(object sender, EventArgs e)
         {
-            List<Product> allItems = _unitOfWork.Products.GetAll().OrderBy(x => x.Price).ToList() ;
+            List<Product> allItems = _unitOfWork.Products.GetAll().OrderBy(x => x.Price).ToList();
             LoadItems();
         }
     }
