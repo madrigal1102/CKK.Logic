@@ -39,7 +39,6 @@
             allStoreItems = new ListBox();
             removeItemButton = new Button();
             viewAllButton = new Button();
-            saveButton = new Button();
             searchBox = new TextBox();
             searchByName = new Button();
             sortByQuantity = new Button();
@@ -142,15 +141,7 @@
             viewAllButton.UseVisualStyleBackColor = true;
             viewAllButton.Click += viewAllButton_Click_1;
             // 
-            // saveButton
-            // 
-            saveButton.Location = new Point(558, 415);
-            saveButton.Name = "saveButton";
-            saveButton.Size = new Size(168, 23);
-            saveButton.TabIndex = 11;
-            saveButton.Text = "Save";
-            saveButton.UseVisualStyleBackColor = true;
-            saveButton.Click += saveButton_Click;
+           
             // 
             // searchBox
             // 

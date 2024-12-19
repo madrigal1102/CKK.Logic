@@ -1,16 +1,18 @@
 ﻿
+using CKK.DB.Interfaces;
+using CKK.DB.Repositary;
 using CKK.Logic.Interfaces;
 using CKK.Logic.Models;
-using CKK.Persistance.Models;
+using CKK.DB;
 
 namespace CKK.UI
 {
     public partial class InventoryManagementForm : Form
     {
-        FileStore store;
-        public InventoryManagementForm(FileStore _store)
+        IUnitOfWork _unitOfWork;
+        public InventoryManagementForm(IUnitOfWork uow)
         {
-            store = _store;
+            _unitOfWork = uow;
             InitializeComponent();
         }
 
@@ -18,11 +20,11 @@ namespace CKK.UI
         private void LoadItems()
         {
             allStoreItems.Items.Clear();
-            List<StoreItem> allItems = store.GetStoreItems();
+            List<Product> allItems = _unitOfWork.Products.GetAll();
 
-            foreach (StoreItem item in allItems)
+            foreach (Product item in allItems)
             {
-                allStoreItems.Items.Add(item.Product.Id + "-" + item.Product.Name + "=" + item.Quantity);
+                allStoreItems.Items.Add(item.Id + "-" + item.Name + "=" + item.Price);
             }
         }
 
@@ -38,7 +40,7 @@ namespace CKK.UI
             product.Name = productTextBox.Text;
             int quantity = Int32.Parse(quantityTextBox.Text);
 
-            store.AddStoreItem(product, quantity);
+            _unitOfWork.Products.Add(product);
 
             InventoryListBox.Items.Add(product.Id + "-" + product.Name + "=" + quantity);
 
@@ -49,7 +51,7 @@ namespace CKK.UI
 
         private void removeItemButton_Click_1(object sender, EventArgs e)
         {
-            List<StoreItem> items = store.GetStoreItems();
+            List<Product> items = _unitOfWork.Products.GetAll();
             if (allStoreItems.SelectedIndex != -1)
             {
                 int itemToRemove = allStoreItems.SelectedIndex;
@@ -58,7 +60,7 @@ namespace CKK.UI
                 int prodId = int.Parse(selectText.Substring(0, dashIndex));
 
 
-                store.DeleteStoreItem(prodId);
+                _unitOfWork.Products.Delete(prodId);
 
                 LoadItems();
             }
@@ -69,37 +71,33 @@ namespace CKK.UI
             LoadItems();
         }
 
-        private void saveButton_Click(object sender, EventArgs e)
-        {
-            store.Save();
-        }
-
+        
         private void searchByName_Click(object sender, EventArgs e)
         {
 
-            List<StoreItem> items = store.GetStoreItems();
-            List<StoreItem> search = store.GetAllProductsByName(searchBox.Text);
+            List<Product> items = _unitOfWork.Products.GetAll();
+            List<Product> search = _unitOfWork.Products.GetAll().Where(x => x.Name.Contains(searchBox.Text)).ToList();
 
-            string searchName = search.FirstOrDefault().Product.Name;
+            string searchName = search.FirstOrDefault().Name;
 
-            foreach (StoreItem item in items)
+            foreach (Product item in items)
             {
-                if (searchName == item.Product.Name)
+                if (searchName == item.Name)
                 {
-                    allStoreItems.Items.Add(item.Product.Id + "-" + item.Product.Name + "=" + item.Quantity);
+                    allStoreItems.Items.Add(item.Id + "-" + item.Name + "=" + item.Quantity);
                 }
             }
         }
 
         private void sortByQuantity_Click(object sender, EventArgs e)
         {
-            List<StoreItem> allItems = store.GetAllProductsByQuantity();
+            List<Product> allItems = _unitOfWork.Products.GetAll().OrderBy(x => x.Quantity).ToList();
             LoadItems();
         }
 
         private void sortbyPrice_Click(object sender, EventArgs e)
         {
-            List<StoreItem> allItems = store.GetAllProductsByPrice();
+            List<Product> allItems = _unitOfWork.Products.GetAll().OrderBy(x => x.Price).ToList() ;
             LoadItems();
         }
     }

@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CKK.Logic.Models;
 
 namespace CKK.DB.Interfaces
 {
-    public interface IOrderRepository : IGenericRepository<Order>
+    public interface IConnectionFactory
     {
-        Order GetOrderByCustomerId(int id);
+        IDbConnection GetConnection { get; }
     }
 }
