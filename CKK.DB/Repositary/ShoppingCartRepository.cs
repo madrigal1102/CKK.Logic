@@ -20,8 +20,12 @@ namespace CKK.DB.Repositary
 
         public int Add(ShoppingCartItem entity)
         {
-            throw new NotImplementedException();
-        }
+			using (var conn = _connectionFactory.GetConnection)
+			{
+				string query = "INSERT INTO ShoppingCartItems (ShoppingCartId, ProductId, Quantity) VALUES (@ShoppingCartId, @ProductId, @Quantity); SELECT CAST(SCOPE_IDENTITY() as int)";
+				return conn.ExecuteScalar<int>(query, entity);
+			}
+		}
 
         public ShoppingCartItem AddToCart(int ShoppingCardId, int ProductId, int quantity)
         {
