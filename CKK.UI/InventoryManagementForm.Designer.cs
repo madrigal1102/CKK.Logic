@@ -28,195 +28,211 @@
         /// </summary>
         private void InitializeComponent()
         {
-            idLabel = new Label();
-            idTextBox = new TextBox();
-            productLabel = new Label();
-            productTextBox = new TextBox();
-            quantityLabel = new Label();
-            quantityTextBox = new TextBox();
-            addButton = new Button();
-            InventoryListBox = new ListBox();
-            allStoreItems = new ListBox();
-            removeItemButton = new Button();
-            viewAllButton = new Button();
-            searchBox = new TextBox();
-            searchByName = new Button();
-            sortByQuantity = new Button();
-            sortbyPrice = new Button();
-            SuspendLayout();
+            this.idLabel = new System.Windows.Forms.Label();
+            this.idTextBox = new System.Windows.Forms.TextBox();
+            this.productLabel = new System.Windows.Forms.Label();
+            this.productTextBox = new System.Windows.Forms.TextBox();
+            this.quantityLabel = new System.Windows.Forms.Label();
+            this.quantityTextBox = new System.Windows.Forms.TextBox();
+            this.addButton = new System.Windows.Forms.Button();
+            this.InventoryListBox = new System.Windows.Forms.ListBox();
+            this.allStoreItems = new System.Windows.Forms.ListBox();
+            this.removeItemButton = new System.Windows.Forms.Button();
+            this.viewAllButton = new System.Windows.Forms.Button();
+            this.searchBox = new System.Windows.Forms.TextBox();
+            this.searchByName = new System.Windows.Forms.Button();
+            this.sortByQuantity = new System.Windows.Forms.Button();
+            this.sortbyPrice = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.selectImageButton = new System.Windows.Forms.Button();
+            this.imagePathTextBox = new System.Windows.Forms.TextBox();
+            this.SuspendLayout();
             // 
             // idLabel
             // 
-            idLabel.AutoSize = true;
-            idLabel.Location = new Point(29, 41);
-            idLabel.Name = "idLabel";
-            idLabel.Size = new Size(41, 20);
-            idLabel.TabIndex = 0;
-            idLabel.Text = "Price";
+            this.idLabel.AutoSize = true;
+            this.idLabel.Location = new System.Drawing.Point(25, 31);
+            this.idLabel.Name = "idLabel";
+            this.idLabel.Size = new System.Drawing.Size(33, 15);
+            this.idLabel.TabIndex = 0;
+            this.idLabel.Text = "Price";
             // 
             // idTextBox
             // 
-            idTextBox.Location = new Point(29, 65);
-            idTextBox.Margin = new Padding(3, 4, 3, 4);
-            idTextBox.Name = "idTextBox";
-            idTextBox.Size = new Size(194, 27);
-            idTextBox.TabIndex = 1;
+            this.idTextBox.Location = new System.Drawing.Point(25, 49);
+            this.idTextBox.Name = "idTextBox";
+            this.idTextBox.Size = new System.Drawing.Size(118, 23);
+            this.idTextBox.TabIndex = 1;
             // 
             // productLabel
             // 
-            productLabel.AutoSize = true;
-            productLabel.Location = new Point(295, 41);
-            productLabel.Name = "productLabel";
-            productLabel.Size = new Size(60, 20);
-            productLabel.TabIndex = 2;
-            productLabel.Text = "Product";
+            this.productLabel.AutoSize = true;
+            this.productLabel.Location = new System.Drawing.Point(149, 31);
+            this.productLabel.Name = "productLabel";
+            this.productLabel.Size = new System.Drawing.Size(49, 15);
+            this.productLabel.TabIndex = 2;
+            this.productLabel.Text = "Product";
             // 
             // productTextBox
             // 
-            productTextBox.Location = new Point(295, 65);
-            productTextBox.Margin = new Padding(3, 4, 3, 4);
-            productTextBox.Name = "productTextBox";
-            productTextBox.Size = new Size(194, 27);
-            productTextBox.TabIndex = 3;
+            this.productTextBox.Location = new System.Drawing.Point(149, 49);
+            this.productTextBox.Name = "productTextBox";
+            this.productTextBox.Size = new System.Drawing.Size(118, 23);
+            this.productTextBox.TabIndex = 3;
             // 
             // quantityLabel
             // 
-            quantityLabel.AutoSize = true;
-            quantityLabel.Location = new Point(550, 41);
-            quantityLabel.Name = "quantityLabel";
-            quantityLabel.Size = new Size(65, 20);
-            quantityLabel.TabIndex = 4;
-            quantityLabel.Text = "Quantity";
+            this.quantityLabel.AutoSize = true;
+            this.quantityLabel.Location = new System.Drawing.Point(273, 31);
+            this.quantityLabel.Name = "quantityLabel";
+            this.quantityLabel.Size = new System.Drawing.Size(53, 15);
+            this.quantityLabel.TabIndex = 4;
+            this.quantityLabel.Text = "Quantity";
             // 
             // quantityTextBox
             // 
-            quantityTextBox.Location = new Point(550, 65);
-            quantityTextBox.Margin = new Padding(3, 4, 3, 4);
-            quantityTextBox.Name = "quantityTextBox";
-            quantityTextBox.Size = new Size(194, 27);
-            quantityTextBox.TabIndex = 5;
+            this.quantityTextBox.Location = new System.Drawing.Point(273, 49);
+            this.quantityTextBox.Name = "quantityTextBox";
+            this.quantityTextBox.Size = new System.Drawing.Size(118, 23);
+            this.quantityTextBox.TabIndex = 5;
             // 
             // addButton
             // 
-            addButton.Location = new Point(29, 117);
-            addButton.Margin = new Padding(3, 4, 3, 4);
-            addButton.Name = "addButton";
-            addButton.Size = new Size(194, 31);
-            addButton.TabIndex = 6;
-            addButton.Text = "Add";
-            addButton.UseVisualStyleBackColor = true;
-            addButton.Click += addButton_Click_1;
+            this.addButton.Location = new System.Drawing.Point(25, 78);
+            this.addButton.Name = "addButton";
+            this.addButton.Size = new System.Drawing.Size(135, 23);
+            this.addButton.TabIndex = 6;
+            this.addButton.Text = "Add";
+            this.addButton.UseVisualStyleBackColor = true;
+            this.addButton.Click += new System.EventHandler(this.addButton_Click);
             // 
             // InventoryListBox
             // 
-            InventoryListBox.FormattingEnabled = true;
-            InventoryListBox.ItemHeight = 20;
-            InventoryListBox.Location = new Point(29, 271);
-            InventoryListBox.Margin = new Padding(3, 4, 3, 4);
-            InventoryListBox.Name = "InventoryListBox";
-            InventoryListBox.Size = new Size(387, 264);
-            InventoryListBox.TabIndex = 7;
+            this.InventoryListBox.FormattingEnabled = true;
+            this.InventoryListBox.ItemHeight = 15;
+            this.InventoryListBox.Location = new System.Drawing.Point(25, 203);
+            this.InventoryListBox.Name = "InventoryListBox";
+            this.InventoryListBox.Size = new System.Drawing.Size(339, 199);
+            this.InventoryListBox.TabIndex = 7;
             // 
             // allStoreItems
             // 
-            allStoreItems.FormattingEnabled = true;
-            allStoreItems.ItemHeight = 20;
-            allStoreItems.Location = new Point(478, 271);
-            allStoreItems.Margin = new Padding(3, 4, 3, 4);
-            allStoreItems.Name = "allStoreItems";
-            allStoreItems.Size = new Size(382, 264);
-            allStoreItems.TabIndex = 8;
+            this.allStoreItems.FormattingEnabled = true;
+            this.allStoreItems.ItemHeight = 15;
+            this.allStoreItems.Location = new System.Drawing.Point(418, 203);
+            this.allStoreItems.Name = "allStoreItems";
+            this.allStoreItems.Size = new System.Drawing.Size(409, 199);
+            this.allStoreItems.TabIndex = 8;
             // 
             // removeItemButton
             // 
-            removeItemButton.Location = new Point(29, 175);
-            removeItemButton.Margin = new Padding(3, 4, 3, 4);
-            removeItemButton.Name = "removeItemButton";
-            removeItemButton.Size = new Size(194, 31);
-            removeItemButton.TabIndex = 9;
-            removeItemButton.Text = "Remove Item";
-            removeItemButton.UseVisualStyleBackColor = true;
-            removeItemButton.Click += removeItemButton_Click_1;
+            this.removeItemButton.Location = new System.Drawing.Point(697, 437);
+            this.removeItemButton.Name = "removeItemButton";
+            this.removeItemButton.Size = new System.Drawing.Size(130, 23);
+            this.removeItemButton.TabIndex = 9;
+            this.removeItemButton.Text = "Remove Item";
+            this.removeItemButton.UseVisualStyleBackColor = true;
+            this.removeItemButton.Click += new System.EventHandler(this.removeItemButton_Click);
             // 
             // viewAllButton
             // 
-            viewAllButton.Location = new Point(29, 232);
-            viewAllButton.Margin = new Padding(3, 4, 3, 4);
-            viewAllButton.Name = "viewAllButton";
-            viewAllButton.Size = new Size(194, 31);
-            viewAllButton.TabIndex = 10;
-            viewAllButton.Text = "View All Items";
-            viewAllButton.UseVisualStyleBackColor = true;
-            viewAllButton.Click += viewAllButton_Click_1;
+            this.viewAllButton.Location = new System.Drawing.Point(697, 408);
+            this.viewAllButton.Name = "viewAllButton";
+            this.viewAllButton.Size = new System.Drawing.Size(130, 23);
+            this.viewAllButton.TabIndex = 10;
+            this.viewAllButton.Text = "View All Items";
+            this.viewAllButton.UseVisualStyleBackColor = true;
+            this.viewAllButton.Click += new System.EventHandler(this.viewAllButton_Click);
             // 
             // searchBox
             // 
-            searchBox.Location = new Point(666, 213);
-            searchBox.Margin = new Padding(3, 4, 3, 4);
-            searchBox.Name = "searchBox";
-            searchBox.Size = new Size(194, 27);
-            searchBox.TabIndex = 12;
+            this.searchBox.Location = new System.Drawing.Point(506, 159);
+            this.searchBox.Name = "searchBox";
+            this.searchBox.Size = new System.Drawing.Size(199, 23);
+            this.searchBox.TabIndex = 12;
             // 
             // searchByName
             // 
-            searchByName.Location = new Point(574, 212);
-            searchByName.Margin = new Padding(3, 4, 3, 4);
-            searchByName.Name = "searchByName";
-            searchByName.Size = new Size(86, 31);
-            searchByName.TabIndex = 13;
-            searchByName.Text = "Search";
-            searchByName.UseVisualStyleBackColor = true;
-            searchByName.Click += searchByName_Click;
+            this.searchByName.Location = new System.Drawing.Point(418, 159);
+            this.searchByName.Name = "searchByName";
+            this.searchByName.Size = new System.Drawing.Size(75, 23);
+            this.searchByName.TabIndex = 13;
+            this.searchByName.Text = "Search";
+            this.searchByName.UseVisualStyleBackColor = true;
             // 
             // sortByQuantity
             // 
-            sortByQuantity.Location = new Point(574, 157);
-            sortByQuantity.Margin = new Padding(3, 4, 3, 4);
-            sortByQuantity.Name = "sortByQuantity";
-            sortByQuantity.Size = new Size(136, 31);
-            sortByQuantity.TabIndex = 14;
-            sortByQuantity.Text = "Sort By Quantity";
-            sortByQuantity.UseVisualStyleBackColor = true;
-            sortByQuantity.Click += sortByQuantity_Click;
+            this.sortByQuantity.Location = new System.Drawing.Point(418, 437);
+            this.sortByQuantity.Name = "sortByQuantity";
+            this.sortByQuantity.Size = new System.Drawing.Size(130, 23);
+            this.sortByQuantity.TabIndex = 14;
+            this.sortByQuantity.Text = "Sort By Quantity";
+            this.sortByQuantity.UseVisualStyleBackColor = true;
             // 
             // sortbyPrice
             // 
-            sortbyPrice.Location = new Point(737, 157);
-            sortbyPrice.Margin = new Padding(3, 4, 3, 4);
-            sortbyPrice.Name = "sortbyPrice";
-            sortbyPrice.Size = new Size(123, 31);
-            sortbyPrice.TabIndex = 15;
-            sortbyPrice.Text = "sortByPrice";
-            sortbyPrice.UseVisualStyleBackColor = true;
-            sortbyPrice.Click += sortbyPrice_Click;
+            this.sortbyPrice.Location = new System.Drawing.Point(418, 408);
+            this.sortbyPrice.Name = "sortbyPrice";
+            this.sortbyPrice.Size = new System.Drawing.Size(130, 23);
+            this.sortbyPrice.TabIndex = 15;
+            this.sortbyPrice.Text = "sortByPrice";
+            this.sortbyPrice.UseVisualStyleBackColor = true;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(418, 31);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(74, 15);
+            this.label1.TabIndex = 16;
+            this.label1.Text = "Select Image";
+            // 
+            // selectImageButton
+            // 
+            this.selectImageButton.Location = new System.Drawing.Point(417, 49);
+            this.selectImageButton.Name = "selectImageButton";
+            this.selectImageButton.Size = new System.Drawing.Size(75, 23);
+            this.selectImageButton.TabIndex = 17;
+            this.selectImageButton.Text = "Image";
+            this.selectImageButton.UseVisualStyleBackColor = true;
+            this.selectImageButton.Click += new System.EventHandler(this.selectImageButton_Click);
+            // 
+            // imagePathTextBox
+            // 
+            this.imagePathTextBox.Location = new System.Drawing.Point(506, 49);
+            this.imagePathTextBox.Name = "imagePathTextBox";
+            this.imagePathTextBox.Size = new System.Drawing.Size(143, 23);
+            this.imagePathTextBox.TabIndex = 18;
             // 
             // InventoryManagementForm
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
-            AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.ControlDark;
-            ClientSize = new Size(914, 600);
-            Controls.Add(sortbyPrice);
-            Controls.Add(sortByQuantity);
-            Controls.Add(searchByName);
-            Controls.Add(searchBox);
-            Controls.Add(viewAllButton);
-            Controls.Add(removeItemButton);
-            Controls.Add(allStoreItems);
-            Controls.Add(InventoryListBox);
-            Controls.Add(addButton);
-            Controls.Add(quantityTextBox);
-            Controls.Add(quantityLabel);
-            Controls.Add(productTextBox);
-            Controls.Add(productLabel);
-            Controls.Add(idTextBox);
-            Controls.Add(idLabel);
-            Margin = new Padding(3, 4, 3, 4);
-            Name = "InventoryManagementForm";
-            Text = "InventoryManagementForm";
-            Load += InventoryManagementForm_Load_1;
-            ResumeLayout(false);
-            PerformLayout();
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.ClientSize = new System.Drawing.Size(926, 499);
+            this.Controls.Add(this.imagePathTextBox);
+            this.Controls.Add(this.selectImageButton);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.sortbyPrice);
+            this.Controls.Add(this.sortByQuantity);
+            this.Controls.Add(this.searchByName);
+            this.Controls.Add(this.searchBox);
+            this.Controls.Add(this.viewAllButton);
+            this.Controls.Add(this.removeItemButton);
+            this.Controls.Add(this.allStoreItems);
+            this.Controls.Add(this.InventoryListBox);
+            this.Controls.Add(this.addButton);
+            this.Controls.Add(this.quantityTextBox);
+            this.Controls.Add(this.quantityLabel);
+            this.Controls.Add(this.productTextBox);
+            this.Controls.Add(this.productLabel);
+            this.Controls.Add(this.idTextBox);
+            this.Controls.Add(this.idLabel);
+            this.Name = "InventoryManagementForm";
+            this.Text = "InventoryManagementForm";
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         #endregion
@@ -237,5 +253,8 @@
         private Button searchByName;
         private Button sortByQuantity;
         private Button sortbyPrice;
+        private Label label1;
+        private Button selectImageButton;
+        private TextBox imagePathTextBox;
     }
 }

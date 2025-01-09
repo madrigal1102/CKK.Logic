@@ -25,6 +25,14 @@ namespace CKK.UI
             foreach (Product item in allItems)
             {
                 allStoreItems.Items.Add(item.Id + "-" + item.Price + "=" + item.Quantity + "-" + item.Name);
+                if (!string.IsNullOrEmpty(item.ImagePath) && File.Exists(item.ImagePath))
+                {
+                    PictureBox productImage = new PictureBox();
+                    productImage.Image = Image.FromFile(item.ImagePath);
+                    productImage.SizeMode = PictureBoxSizeMode.StretchImage;
+                    productImage.Size = new Size(100, 100);
+                    allStoreItems.Controls.Add(productImage);
+                }
             }
         }
 
@@ -32,45 +40,6 @@ namespace CKK.UI
         {
 
         }
-
-        private void addButton_Click_1(object sender, EventArgs e)
-        {
-            Product product = new Product();
-            product.Price = Int32.Parse(idTextBox.Text);
-            product.Name = productTextBox.Text;
-            product.Quantity = Int32.Parse(quantityTextBox.Text);
-
-            _unitOfWork.Products.Add(product);
-
-            InventoryListBox.Items.Add(product.Price + "-" + product.Quantity + "=" + product.Name);
-
-            idTextBox.Clear();
-            productTextBox.Clear();
-            quantityTextBox.Clear();
-        }
-
-        private void removeItemButton_Click_1(object sender, EventArgs e)
-        {
-            List<Product> items = _unitOfWork.Products.GetAll();
-            if (allStoreItems.SelectedIndex != -1)
-            {
-                int itemToRemove = allStoreItems.SelectedIndex;
-                string selectText = allStoreItems.Items[itemToRemove].ToString();
-                int dashIndex = selectText.IndexOf("-");
-                int prodId = int.Parse(selectText.Substring(0, dashIndex));
-
-
-                _unitOfWork.Products.Delete(prodId);
-
-                LoadItems();
-            }
-        }
-
-        private void viewAllButton_Click_1(object sender, EventArgs e)
-        {
-            LoadItems();
-        }
-
 
         private void searchByName_Click(object sender, EventArgs e)
         {
@@ -99,6 +68,60 @@ namespace CKK.UI
         {
             List<Product> allItems = _unitOfWork.Products.GetAll().OrderBy(x => x.Price).ToList();
             LoadItems();
+        }
+
+        private void selectImageButton_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.Filter = "Image files (*.jpg, *.jpeg, *.png) | *.jpg; *.jpeg; *.png";
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    imagePathTextBox.Text = openFileDialog.FileName; // Display the selected file path
+                }
+            }
+        }
+
+        private void addButton_Click(object sender, EventArgs e)
+        {
+            Product product = new Product();
+            product.Price = Int32.Parse(idTextBox.Text);
+            product.Name = productTextBox.Text;
+            product.Quantity = Int32.Parse(quantityTextBox.Text);
+
+            product.ImagePath = imagePathTextBox.Text;
+
+            _unitOfWork.Products.Add(product);
+
+            InventoryListBox.Items.Add(product.Price + "-" + product.Quantity + "=" + product.Name);
+
+            idTextBox.Clear();
+            productTextBox.Clear();
+            quantityTextBox.Clear();
+            imagePathTextBox.Clear();
+        }
+
+        private void viewAllButton_Click(object sender, EventArgs e)
+        {
+            LoadItems();
+        }
+
+        private void removeItemButton_Click(object sender, EventArgs e)
+        {
+            List<Product> items = _unitOfWork.Products.GetAll();
+            if (allStoreItems.SelectedIndex != -1)
+            {
+                int itemToRemove = allStoreItems.SelectedIndex;
+                string selectText = allStoreItems.Items[itemToRemove].ToString();
+                int dashIndex = selectText.IndexOf("-");
+                int prodId = int.Parse(selectText.Substring(0, dashIndex));
+
+
+                _unitOfWork.Products.Delete(prodId);
+
+                LoadItems();
+            }
         }
     }
 }
