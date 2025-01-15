@@ -18,7 +18,7 @@ namespace CKK.DB.Repositary
         }
         public int Add(Product entity)
         {
-            var sql = "INSERT INTO Products (Price,Quantity,Name) VALUES (@Price,@Quantity,@Name)";
+            var sql = "INSERT INTO Products (Price,Quantity,Name, ImagePath) VALUES (@Price,@Quantity,@Name, @ImagePath)";
             using (var connection = _connectionFactory.GetConnection)
             {
                 connection.Open();
@@ -72,7 +72,7 @@ namespace CKK.DB.Repositary
 
         public int Update(Product entity)
         {
-            var sql = "UPDATE Products SET Price=@Price, Quantity=@Quantity, Name=@Name WHERE Id=@Id";
+            var sql = "UPDATE Products SET Price=@Price, Quantity=@Quantity, Name=@Name, ImagePath=@ImagePath WHERE Id=@Id";
             using (var connection = _connectionFactory.GetConnection)
             {
                 connection.Open();

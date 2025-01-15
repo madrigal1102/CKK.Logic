@@ -23,9 +23,21 @@ else
             {
                 <div class="card" style="width: 18rem; padding: 5px;">
                     <div class="card-body">
+                        @if (!string.IsNullOrEmpty(item.ImagePath))
+                        {
+                            <img src="@item.ImagePath" alt="@item.Name" class="card-img-top" style="height: 150px; object-fit: cover;" />
+                        }
+                        else
+                        {
+                            <img src="placeholder-image.png" alt="Placeholder" class="card-img-top" style="height: 150px; object-fit: cover;" />
+                        }
                         <h5 class="card-title text-center">@item.Name</h5>
                         <p class="card-text">@item.Price.ToString("c")</p>
                         <p class="card-text">Quantity Available: @item.Quantity</p>
+                        @if (item.Quantity <= 0)
+                        {
+                            <p class="text-danger">Out of Stock</p>
+                        }
                         <br />
                     </div>
                     <div class="card-footer">
@@ -97,4 +109,5 @@ else
         var Item = uow.ShoppingCarts.AddToCart(order.ShoppingCartId, productId, Convert.ToInt16(value));
         UpdateTotal();
     }
+
 }

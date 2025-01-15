@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.idLabel = new System.Windows.Forms.Label();
-            this.idTextBox = new System.Windows.Forms.TextBox();
+            this.priceTextBox = new System.Windows.Forms.TextBox();
             this.productLabel = new System.Windows.Forms.Label();
             this.productTextBox = new System.Windows.Forms.TextBox();
             this.quantityLabel = new System.Windows.Forms.Label();
@@ -46,6 +46,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.selectImageButton = new System.Windows.Forms.Button();
             this.imagePathTextBox = new System.Windows.Forms.TextBox();
+            this.editButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // idLabel
@@ -57,12 +58,12 @@
             this.idLabel.TabIndex = 0;
             this.idLabel.Text = "Price";
             // 
-            // idTextBox
+            // priceTextBox
             // 
-            this.idTextBox.Location = new System.Drawing.Point(25, 49);
-            this.idTextBox.Name = "idTextBox";
-            this.idTextBox.Size = new System.Drawing.Size(118, 23);
-            this.idTextBox.TabIndex = 1;
+            this.priceTextBox.Location = new System.Drawing.Point(25, 49);
+            this.priceTextBox.Name = "priceTextBox";
+            this.priceTextBox.Size = new System.Drawing.Size(118, 23);
+            this.priceTextBox.TabIndex = 1;
             // 
             // productLabel
             // 
@@ -204,12 +205,23 @@
             this.imagePathTextBox.Size = new System.Drawing.Size(143, 23);
             this.imagePathTextBox.TabIndex = 18;
             // 
+            // editButton
+            // 
+            this.editButton.Location = new System.Drawing.Point(25, 117);
+            this.editButton.Name = "editButton";
+            this.editButton.Size = new System.Drawing.Size(135, 23);
+            this.editButton.TabIndex = 19;
+            this.editButton.Text = "Edit";
+            this.editButton.UseVisualStyleBackColor = true;
+            this.editButton.Click += new System.EventHandler(this.editButton_Click);
+            // 
             // InventoryManagementForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDark;
             this.ClientSize = new System.Drawing.Size(926, 499);
+            this.Controls.Add(this.editButton);
             this.Controls.Add(this.imagePathTextBox);
             this.Controls.Add(this.selectImageButton);
             this.Controls.Add(this.label1);
@@ -226,7 +238,7 @@
             this.Controls.Add(this.quantityLabel);
             this.Controls.Add(this.productTextBox);
             this.Controls.Add(this.productLabel);
-            this.Controls.Add(this.idTextBox);
+            this.Controls.Add(this.priceTextBox);
             this.Controls.Add(this.idLabel);
             this.Name = "InventoryManagementForm";
             this.Text = "InventoryManagementForm";
@@ -239,7 +251,7 @@
 
         private Label idLabel;
         private Label quantityLabel;
-        private TextBox idTextBox;
+        private TextBox priceTextBox;
         private Label productLabel;
         private TextBox productTextBox;
         private TextBox quantityTextBox;
@@ -256,5 +268,6 @@
         private Label label1;
         private Button selectImageButton;
         private TextBox imagePathTextBox;
+        private Button editButton;
     }
 }

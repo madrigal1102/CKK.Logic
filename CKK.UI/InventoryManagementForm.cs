@@ -4,6 +4,7 @@ using CKK.DB.Repositary;
 using CKK.Logic.Interfaces;
 using CKK.Logic.Models;
 using CKK.DB;
+using System.Windows.Forms;
 
 namespace CKK.UI
 {
@@ -25,14 +26,14 @@ namespace CKK.UI
             foreach (Product item in allItems)
             {
                 allStoreItems.Items.Add(item.Id + "-" + item.Price + "=" + item.Quantity + "-" + item.Name);
-                if (!string.IsNullOrEmpty(item.ImagePath) && File.Exists(item.ImagePath))
+                /*if (!string.IsNullOrEmpty(item.ImagePath) && File.Exists(item.ImagePath))
                 {
                     PictureBox productImage = new PictureBox();
                     productImage.Image = Image.FromFile(item.ImagePath);
                     productImage.SizeMode = PictureBoxSizeMode.StretchImage;
                     productImage.Size = new Size(100, 100);
                     allStoreItems.Controls.Add(productImage);
-                }
+                }*/
             }
         }
 
@@ -86,17 +87,32 @@ namespace CKK.UI
         private void addButton_Click(object sender, EventArgs e)
         {
             Product product = new Product();
-            product.Price = Int32.Parse(idTextBox.Text);
+            product.Price = Int32.Parse(priceTextBox.Text);
             product.Name = productTextBox.Text;
             product.Quantity = Int32.Parse(quantityTextBox.Text);
 
-            product.ImagePath = imagePathTextBox.Text;
+            string baseImageDirectory = @"C:\Users\9000143958\source\repos\CKK.Logic\CKK.Web\wwwroot\Images";
+
+            if (!Directory.Exists(baseImageDirectory))
+            {
+                Directory.CreateDirectory(baseImageDirectory);
+            }
+
+            string selectedImagePath = imagePathTextBox.Text;
+            string fileName = Path.GetFileName(selectedImagePath); // Extract just the file name
+            string destinationPath = Path.Combine(baseImageDirectory, fileName);
+
+            File.Copy(selectedImagePath, destinationPath, true);
+
+            string relativeImagePath = $"/Images/{fileName}";
+
+            product.ImagePath = relativeImagePath;
 
             _unitOfWork.Products.Add(product);
 
             InventoryListBox.Items.Add(product.Price + "-" + product.Quantity + "=" + product.Name);
 
-            idTextBox.Clear();
+            priceTextBox.Clear();
             productTextBox.Clear();
             quantityTextBox.Clear();
             imagePathTextBox.Clear();
@@ -122,6 +138,53 @@ namespace CKK.UI
 
                 LoadItems();
             }
+        }
+
+        private void editButton_Click(object sender, EventArgs e)
+        {
+
+            if (allStoreItems.SelectedIndex != -1)
+            {
+                int selectedIndex = allStoreItems.SelectedIndex;
+                string selectedText = allStoreItems.Items[selectedIndex].ToString();
+
+                int dashIndex = selectedText.IndexOf("-");
+                if (dashIndex == -1)
+                {
+                    MessageBox.Show("Invalid product format selected.");
+                    return;
+                }
+
+                int productId;
+                if (!int.TryParse(selectedText.Substring(0, dashIndex), out productId))
+                {
+                    MessageBox.Show("Invalid product ID.");
+                    return;
+                }
+
+                Product productToEdit = _unitOfWork.Products.GetAll().FirstOrDefault(p => p.Id == productId);
+
+                if (productToEdit != null)
+                {
+                    using (EditProductForm editForm = new EditProductForm(productToEdit))
+                    {
+                        if (editForm.ShowDialog() == DialogResult.OK && editForm.EditedProduct != null)
+                        {
+                            _unitOfWork.Products.Update(editForm.EditedProduct);
+                            LoadItems();
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Product not found. Please refresh the list.");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select a product to edit.");
+            }
+
         }
     }
 }

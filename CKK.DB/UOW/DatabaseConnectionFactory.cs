@@ -17,7 +17,8 @@ namespace CKK.DB.UOW
             return ConfigurationManager.ConnectionStrings[name].ConnectionString;
         }
 
-        private readonly string connectionString = "Data Source = (localdb)\\MSSQLLocalDB;Initial Catalog = StructuredProjectDB";
+        private readonly string connectionString = "Server=BT144-PROG10\\SQLEXPRESS01; Database=StructuredProjectDB; TrustServerCertificate=True; Integrated Security=True;";
+
 
         public IDbConnection GetConnection
         {

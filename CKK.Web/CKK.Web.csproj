@@ -7,8 +7,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\Images\Shirt.jpg" />
+    <Content Remove="wwwroot\Images\Shoes.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\CKK.DB\CKK.DB.csproj" />
     <ProjectReference Include="..\CKK.Logic\CKK.Logic.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\Images\Shirt.jpg" />
+    <None Include="wwwroot\Images\Shoes.jpg" />
   </ItemGroup>
 
 </Project>
